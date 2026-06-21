@@ -1,7 +1,8 @@
 import requests
 import json
-import time
-token = ''
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 class API_get_ip:
     def __init__(self):
@@ -39,8 +40,10 @@ class API_yandex_disk:
 
 
 if __name__ == '__main__':
+    token = os.getenv('token')
     API_get_ip = API_get_ip() # получаем ip
     API_get_ip.get_info_ip() # получаем информацию о ip
     API_yandex_disk = API_yandex_disk(token) # авторизуемся на яндекс диске
     API_yandex_disk.create_folder('ip_info') # создаем папку 
-    API_yandex_disk.upload_file('info_ip.txt','ip_info/info_ip.txt') # загружаем файл
+    API_yandex_disk.upload_file('info_ip.txt','ip_info/info_ip.txt') # загружаем файл 
+    
